@@ -16,15 +16,15 @@ struct PlayerStatsView: View {
             if viewModel.isLoading {
                 ProgressView()
             } else if let stats = viewModel.playerStats {
-                Text(stats.player.name)
+                Text("TBD")
                     .font(.title)
-                Text(stats.player.team)
+                Text("TBD")
                     .font(.subheadline)
                 
                 HStack {
-                    StatView(title: "Points", value: stats.points)
-                    StatView(title: "Assists", value: stats.assists)
-                    StatView(title: "Rebounds", value: stats.rebounds)
+                    StatView(title: "Points", value: stats.pts)
+                    StatView(title: "Assists", value: stats.ast)
+                    StatView(title: "Rebounds", value: stats.reb)
                 }
             } else if let error = viewModel.error {
                 Text("Error: \(error.localizedDescription)")
@@ -51,5 +51,5 @@ struct StatView: View {
 }
 
 #Preview {
-    PlayerStatsView(viewModel: PlayerStatsViewModel(nbaStatsService: NBAStatsService(apiKey: "2bc99545-99f4-4cb8-ae67-a34a50d9904e")), playerId: 19)
+    PlayerStatsView(viewModel: PlayerStatsViewModel(nbaStatsService: NBAStatsService(apiKey: "2bc99545-99f4-4cb8-ae67-a34a50d9904e")), playerId: 237)
 }

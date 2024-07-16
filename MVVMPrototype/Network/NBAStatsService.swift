@@ -25,7 +25,7 @@ public class NBAStatsService {
         return request
     }
     
-    func searchPlayers(term: String) async throws -> [Player] {
+    func searchPlayers(term: String) async throws -> [PlayerInfo] {
         let encodedTerm = term.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let urlString = "\(baseURL)/players?search=\(encodedTerm)"
         
@@ -35,15 +35,18 @@ public class NBAStatsService {
         
         let request = createRequest(url: url)
         let (data, _) = try await urlSession.data(for: request)
-        let response = try JSONDecoder().decode(BallDontLieResponse<BallDontLiePlayer>.self, from: data)
-        
-        return response.data.map { player in
-            Player(
-                id: player.id,
-                name: "\(player.firstName) \(player.lastName)",
-                team: player.team.fullName
-            )
+        print(data)
+        print("XXX")
+        do {
+            let response = try JSONDecoder().decode(PlayerSearchResponse.self, from: data)
+            print(response)
+            print("YYY")
+            print(response)
+            return response.data
+        } catch {
+            print(error.localizedDescription)
         }
+        return []
     }
     
     func fetchPlayerStats(playerId: Int) async throws -> PlayerStats {
@@ -55,23 +58,24 @@ public class NBAStatsService {
         
         let request = createRequest(url: url)
         let (data, _) = try await urlSession.data(for: request)
-        let response = try JSONDecoder().decode(BallDontLieResponse<BallDontLiePlayerStats>.self, from: data)
+        let response = try JSONDecoder().decode(PlayerStatsResponse.self, from: data)
         
         guard let stats = response.data.first else {
             throw NSError(domain: "NBAStatsService", code: 0, userInfo: [NSLocalizedDescriptionKey: "No stats available for this player"])
         }
         
-        let player = try await fetchPlayerDetails(playerId: playerId)
+        return stats
+        /*let player = try await fetchPlayerDetails(playerId: playerId)
         
         return PlayerStats(
             player: player,
             points: stats.pts,
             assists: stats.ast,
             rebounds: stats.reb
-        )
+        )*/
     }
     
-    private func fetchPlayerDetails(playerId: Int) async throws -> Player {
+    private func fetchPlayerDetails(playerId: Int) async throws -> PlayerInfo {
         let urlString = "\(baseURL)/players/\(playerId)"
         
         guard let url = URL(string: urlString) else {
@@ -80,12 +84,8 @@ public class NBAStatsService {
         
         let request = createRequest(url: url)
         let (data, _) = try await urlSession.data(for: request)
-        let player = try JSONDecoder().decode(BallDontLiePlayer.self, from: data)
+        let player = try JSONDecoder().decode(PlayerInfo.self, from: data)
         
-        return Player(
-            id: player.id,
-            name: "\(player.firstName) \(player.lastName)",
-            team: player.team.fullName
-        )
+        return player
     }
 }

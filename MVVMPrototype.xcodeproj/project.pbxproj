@@ -15,9 +15,9 @@
 		46063B892C457F0A0046FEB3 /* MVVMPrototypeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46063B882C457F0A0046FEB3 /* MVVMPrototypeUITests.swift */; };
 		46063B8B2C457F0A0046FEB3 /* MVVMPrototypeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46063B8A2C457F0A0046FEB3 /* MVVMPrototypeUITestsLaunchTests.swift */; };
 		46063B9A2C457F900046FEB3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46063B992C457F900046FEB3 /* Player.swift */; };
-		46063B9C2C457FAF0046FEB3 /* BallDontLiePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46063B9B2C457FAF0046FEB3 /* BallDontLiePlayer.swift */; };
+		46063B9C2C457FAF0046FEB3 /* PlayerSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46063B9B2C457FAF0046FEB3 /* PlayerSearchResponse.swift */; };
 		46CF2B522C45803100E8DD4B /* BallDontLieTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CF2B512C45803100E8DD4B /* BallDontLieTeam.swift */; };
-		46CF2B542C45804700E8DD4B /* BallDontLiePlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CF2B532C45804700E8DD4B /* BallDontLiePlayerStats.swift */; };
+		46CF2B542C45804700E8DD4B /* PlayerStatsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CF2B532C45804700E8DD4B /* PlayerStatsResponse.swift */; };
 		46CF2B562C45806200E8DD4B /* BallDontLieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CF2B552C45806200E8DD4B /* BallDontLieResponse.swift */; };
 		46CF2B592C45809100E8DD4B /* NBAStatsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CF2B582C45809100E8DD4B /* NBAStatsService.swift */; };
 		46CF2B5B2C45823600E8DD4B /* PlayerSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CF2B5A2C45823600E8DD4B /* PlayerSearchView.swift */; };
@@ -55,9 +55,9 @@
 		46063B882C457F0A0046FEB3 /* MVVMPrototypeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMPrototypeUITests.swift; sourceTree = "<group>"; };
 		46063B8A2C457F0A0046FEB3 /* MVVMPrototypeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMPrototypeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		46063B992C457F900046FEB3 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		46063B9B2C457FAF0046FEB3 /* BallDontLiePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallDontLiePlayer.swift; sourceTree = "<group>"; };
+		46063B9B2C457FAF0046FEB3 /* PlayerSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSearchResponse.swift; sourceTree = "<group>"; };
 		46CF2B512C45803100E8DD4B /* BallDontLieTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallDontLieTeam.swift; sourceTree = "<group>"; };
-		46CF2B532C45804700E8DD4B /* BallDontLiePlayerStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallDontLiePlayerStats.swift; sourceTree = "<group>"; };
+		46CF2B532C45804700E8DD4B /* PlayerStatsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatsResponse.swift; sourceTree = "<group>"; };
 		46CF2B552C45806200E8DD4B /* BallDontLieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallDontLieResponse.swift; sourceTree = "<group>"; };
 		46CF2B582C45809100E8DD4B /* NBAStatsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBAStatsService.swift; sourceTree = "<group>"; };
 		46CF2B5A2C45823600E8DD4B /* PlayerSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSearchView.swift; sourceTree = "<group>"; };
@@ -173,9 +173,9 @@
 		46CF2B572C45806F00E8DD4B /* API Response */ = {
 			isa = PBXGroup;
 			children = (
-				46063B9B2C457FAF0046FEB3 /* BallDontLiePlayer.swift */,
+				46063B9B2C457FAF0046FEB3 /* PlayerSearchResponse.swift */,
 				46CF2B512C45803100E8DD4B /* BallDontLieTeam.swift */,
-				46CF2B532C45804700E8DD4B /* BallDontLiePlayerStats.swift */,
+				46CF2B532C45804700E8DD4B /* PlayerStatsResponse.swift */,
 				46CF2B552C45806200E8DD4B /* BallDontLieResponse.swift */,
 			);
 			path = "API Response";
@@ -316,13 +316,13 @@
 				46063B702C457F070046FEB3 /* ContentView.swift in Sources */,
 				46CF2B5D2C45824A00E8DD4B /* PlayerStatsView.swift in Sources */,
 				46CF2B522C45803100E8DD4B /* BallDontLieTeam.swift in Sources */,
-				46063B9C2C457FAF0046FEB3 /* BallDontLiePlayer.swift in Sources */,
+				46063B9C2C457FAF0046FEB3 /* PlayerSearchResponse.swift in Sources */,
 				46CF2B5B2C45823600E8DD4B /* PlayerSearchView.swift in Sources */,
 				46063B9A2C457F900046FEB3 /* Player.swift in Sources */,
 				46063B6E2C457F070046FEB3 /* MVVMPrototypeApp.swift in Sources */,
 				46CF2B612C45829600E8DD4B /* PlayerStatsViewModel.swift in Sources */,
 				46CF2B5F2C45827A00E8DD4B /* PlayerSearchViewModel.swift in Sources */,
-				46CF2B542C45804700E8DD4B /* BallDontLiePlayerStats.swift in Sources */,
+				46CF2B542C45804700E8DD4B /* PlayerStatsResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

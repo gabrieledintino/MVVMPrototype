@@ -12,10 +12,3 @@ struct Player: Identifiable, Hashable {
     let name: String
     let team: String
 }
-
-struct PlayerStats {
-    let player: Player
-    let points: Double
-    let assists: Double
-    let rebounds: Double
-}

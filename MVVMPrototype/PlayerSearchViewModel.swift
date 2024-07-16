@@ -10,7 +10,7 @@ import Foundation
 @MainActor
 class PlayerSearchViewModel: ObservableObject {
     @Published var searchTerm = ""
-    @Published var searchResults: [Player] = []
+    @Published var searchResults: [PlayerInfo] = []
     @Published var isSearching = false
     @Published var error: Error?
     
