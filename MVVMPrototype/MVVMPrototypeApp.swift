@@ -11,7 +11,7 @@ import SwiftUI
 struct MVVMPrototypeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(nbaStatsService: NBAStatsService(apiKey: "2bc99545-99f4-4cb8-ae67-a34a50d9904e"))
+            ContentView()
         }
     }
 }

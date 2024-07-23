@@ -8,23 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    let nbaStatsService: NBAStatsService
-        
-        var body: some View {
-            TabView {
-                PlayerSearchView(viewModel: PlayerSearchViewModel(nbaStatsService: nbaStatsService))
-                    .tabItem {
-                        Label("Search", systemImage: "magnifyingglass")
-                    }
-                
-                Text("Stats Overview")
-                    .tabItem {
-                        Label("Stats", systemImage: "chart.bar")
-                    }
-            }
+    var body: some View {
+        TabView {
+            DriversListView()
+                .tabItem {
+                    Label("Drivers", systemImage: "person.3")
+                }
+            
+            FavoriteDriversView()
+                .tabItem {
+                    Label("Favorites", systemImage: "star")
+                }
         }
+    }
 }
 
 #Preview {
-    ContentView(nbaStatsService: NBAStatsService(apiKey: "2bc99545-99f4-4cb8-ae67-a34a50d9904e"))
+    ContentView()
 }
