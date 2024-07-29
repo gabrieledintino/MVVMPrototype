@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DriversListView: View {
-    @State private var viewModel = DriversViewModel()
+    @State private var viewModel = DriversListViewModel()
     
     var body: some View {
         NavigationView {

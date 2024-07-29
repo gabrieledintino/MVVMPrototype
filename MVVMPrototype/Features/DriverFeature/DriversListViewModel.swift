@@ -7,11 +7,17 @@
 
 import Foundation
 
-@Observable class DriversViewModel {
+@Observable class DriversListViewModel {
     var drivers: [Driver] = []
     var searchText = ""
     var isLoading = false
     var errorMessage: String?
+    
+    private let networkClient: NetworkClientProtocol
+        
+    init(networkClient: NetworkClientProtocol = NetworkClient.shared) {
+        self.networkClient = networkClient
+    }
     
     var filteredDrivers: [Driver] {
         if searchText.isEmpty {
@@ -26,7 +32,7 @@ import Foundation
         errorMessage = nil
         
         do {
-            drivers = try await NetworkClient.shared.fetchDrivers()
+            drivers = try await networkClient.fetchDrivers()
         } catch {
             errorMessage = error.localizedDescription
         }
