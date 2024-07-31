@@ -34,6 +34,9 @@
 		5C6632572C4AA56F004DAB74 /* FavoriteDriversViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6632562C4AA56F004DAB74 /* FavoriteDriversViewModelTests.swift */; };
 		5C6632592C4AB788004DAB74 /* NetworkClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6632582C4AB788004DAB74 /* NetworkClientProtocol.swift */; };
 		5CAB6E402C5803080077E315 /* MockNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB6E3F2C5803080077E315 /* MockNetworkClient.swift */; };
+		5CAB6E432C583D330077E315 /* Mockingbird in Frameworks */ = {isa = PBXBuildFile; productRef = 5CAB6E422C583D330077E315 /* Mockingbird */; };
+		5CB4FD372C58415200A5C471 /* Mocktest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB4FD362C58415200A5C471 /* Mocktest.swift */; };
+		F5D37007CA037F2736B28250 /* MVVMPrototypeTests-MVVMPrototypeMocks.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE85F9D3EFAB5125A02E359 /* MVVMPrototypeTests-MVVMPrototypeMocks.generated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +87,8 @@
 		5C6632562C4AA56F004DAB74 /* FavoriteDriversViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDriversViewModelTests.swift; sourceTree = "<group>"; };
 		5C6632582C4AB788004DAB74 /* NetworkClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientProtocol.swift; sourceTree = "<group>"; };
 		5CAB6E3F2C5803080077E315 /* MockNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkClient.swift; sourceTree = "<group>"; };
+		5CB4FD362C58415200A5C471 /* Mocktest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocktest.swift; sourceTree = "<group>"; };
+		CFE85F9D3EFAB5125A02E359 /* MVVMPrototypeTests-MVVMPrototypeMocks.generated.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "MVVMPrototypeTests-MVVMPrototypeMocks.generated.swift"; path = "MockingbirdMocks/MVVMPrototypeTests-MVVMPrototypeMocks.generated.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CAB6E432C583D330077E315 /* Mockingbird in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +124,7 @@
 				46063B7D2C457F0A0046FEB3 /* MVVMPrototypeTests */,
 				46063B872C457F0A0046FEB3 /* MVVMPrototypeUITests */,
 				46063B6B2C457F070046FEB3 /* Products */,
+				59571436E759297C28F02C93 /* Generated Mocks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -203,12 +210,21 @@
 			path = "API Response";
 			sourceTree = "<group>";
 		};
+		59571436E759297C28F02C93 /* Generated Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				CFE85F9D3EFAB5125A02E359 /* MVVMPrototypeTests-MVVMPrototypeMocks.generated.swift */,
+			);
+			name = "Generated Mocks";
+			sourceTree = "<group>";
+		};
 		5C335B382C4EC18300E9114F /* Files */ = {
 			isa = PBXGroup;
 			children = (
 				5C335B392C4EC1A900E9114F /* drivers.json */,
 				5C335B3B2C4EC1D800E9114F /* leclerc_results.json */,
 				5C335B4C2C4EFB2F00E9114F /* FileUtils.swift */,
+				5CB4FD362C58415200A5C471 /* Mocktest.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -291,6 +307,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46063B912C457F0A0046FEB3 /* Build configuration list for PBXNativeTarget "MVVMPrototypeTests" */;
 			buildPhases = (
+				1A79473545EDAF4E02AC55A1 /* Generate Mockingbird Mocks */,
 				46063B762C457F0A0046FEB3 /* Sources */,
 				46063B772C457F0A0046FEB3 /* Frameworks */,
 				46063B782C457F0A0046FEB3 /* Resources */,
@@ -301,6 +318,9 @@
 				46063B7C2C457F0A0046FEB3 /* PBXTargetDependency */,
 			);
 			name = MVVMPrototypeTests;
+			packageProductDependencies = (
+				5CAB6E422C583D330077E315 /* Mockingbird */,
+			);
 			productName = MVVMPrototypeTests;
 			productReference = 46063B7A2C457F0A0046FEB3 /* MVVMPrototypeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -355,6 +375,9 @@
 				Base,
 			);
 			mainGroup = 46063B612C457F060046FEB3;
+			packageReferences = (
+				5CAB6E412C583D330077E315 /* XCRemoteSwiftPackageReference "mockingbird" */,
+			);
 			productRefGroup = 46063B6B2C457F070046FEB3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -394,6 +417,25 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1A79473545EDAF4E02AC55A1 /* Generate Mockingbird Mocks */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Mockingbird Mocks";
+			outputPaths = (
+				"$(SRCROOT)/MockingbirdMocks/MVVMPrototypeTests-MVVMPrototypeMocks.generated.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eu\n\n# Prevent Xcode 13 from running this script while indexing.\n[[ \"${ACTION}\" == \"indexbuild\" ]] && exit 0\n\n\"${HOME}/Library/Developer/Xcode/DerivedData/MVVMPrototype-gocacplmrubabxboiggvlawgqlzk/SourcePackages/checkouts/mockingbird/mockingbird\" generate --targets \"MVVMPrototype\" --outputs \"${SRCROOT}/MockingbirdMocks/MVVMPrototypeTests-MVVMPrototypeMocks.generated.swift\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		46063B662C457F070046FEB3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -420,6 +462,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C335B4B2C4EF96600E9114F /* MockURLProtocol.swift in Sources */,
+				5CB4FD372C58415200A5C471 /* Mocktest.swift in Sources */,
 				5C335B422C4EC2AF00E9114F /* DriversListViewModelTests.swift in Sources */,
 				5C335B4D2C4EFB2F00E9114F /* FileUtils.swift in Sources */,
 				5C6632572C4AA56F004DAB74 /* FavoriteDriversViewModelTests.swift in Sources */,
@@ -427,6 +470,7 @@
 				5CAB6E402C5803080077E315 /* MockNetworkClient.swift in Sources */,
 				5C335B472C4EF8DB00E9114F /* URLProtocolStub.swift in Sources */,
 				5C335B492C4EF92700E9114F /* NetworkClientTests.swift in Sources */,
+				F5D37007CA037F2736B28250 /* MVVMPrototypeTests-MVVMPrototypeMocks.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,7 +536,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -555,7 +599,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -748,6 +792,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5CAB6E412C583D330077E315 /* XCRemoteSwiftPackageReference "mockingbird" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/birdrides/mockingbird";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.20.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5CAB6E422C583D330077E315 /* Mockingbird */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5CAB6E412C583D330077E315 /* XCRemoteSwiftPackageReference "mockingbird" */;
+			productName = Mockingbird;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 46063B622C457F060046FEB3 /* Project object */;
 }

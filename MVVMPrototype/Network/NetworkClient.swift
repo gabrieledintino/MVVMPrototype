@@ -10,11 +10,8 @@ import Foundation
 import Foundation
 
 enum APIError: Error, Equatable {
-    case invalidURL
-    case noData
     case decodingError
     case networkError
-    case testError
 }
 
 actor NetworkClient: NetworkClientProtocol {
@@ -39,16 +36,8 @@ actor NetworkClient: NetworkClientProtocol {
         return response.mrData.raceTable.races
     }
     
-    /*func fetchConstructorStandings() async throws -> [ConstructorStanding] {
-        let urlString = "\(baseURL)/current/constructorStandings.json"
-        let response: ConstructorStandingsResponse = try await performRequest(with: urlString)
-        return response.MRData.StandingsTable.StandingsLists.first?.ConstructorStandings ?? []
-    }*/
-    
     private func performRequest<T: Decodable>(with urlString: String) async throws -> T {
-        guard let url = URL(string: urlString) else {
-            throw APIError.invalidURL
-        }
+        let url = URL(string: urlString)!
         
         do {
             let (data, _) = try await urlSession.data(from: url)
