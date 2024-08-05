@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "94308382-17FC-48FB-B464-B7C658F20D0B",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:MVVMPrototype.xcodeproj",
+      "identifier" : "46063B692C457F070046FEB3",
+      "name" : "MVVMPrototype"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MVVMPrototype.xcodeproj",
+        "identifier" : "46063B792C457F0A0046FEB3",
+        "name" : "MVVMPrototypeTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MVVMPrototype.xcodeproj",
+        "identifier" : "46063B832C457F0A0046FEB3",
+        "name" : "MVVMPrototypeUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

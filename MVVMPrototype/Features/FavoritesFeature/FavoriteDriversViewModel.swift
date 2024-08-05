@@ -15,7 +15,10 @@ import Foundation
     private let defaults: UserDefaults// = UserDefaults.standard
     private let favoritesKey = "FavoriteDrivers"
     
-    init(userDefaults: UserDefaults = UserDefaults.standard) {
+    private let networkClient: NetworkClientProtocol
+
+    init(networkClient: NetworkClientProtocol = NetworkClient.shared, userDefaults: UserDefaults = UserDefaults.standard) {
+        self.networkClient = networkClient
         defaults = userDefaults
     }
     
@@ -23,10 +26,10 @@ import Foundation
         isLoading = true
         errorMessage = nil
         
-        let favoriteIDs = defaults.stringArray(forKey: favoritesKey) ?? []
+        let favoriteIDs = getFavoritesIDs()
         
         do {
-            let allDrivers = try await NetworkClient.shared.fetchDrivers()
+            let allDrivers = try await networkClient.fetchDrivers()
             favoriteDrivers = allDrivers.filter { favoriteIDs.contains($0.driverID) }
         } catch {
             errorMessage = error.localizedDescription
@@ -36,14 +39,18 @@ import Foundation
     }
     
     func removeFavorite(_ driver: Driver) {
-        var favorites = defaults.stringArray(forKey: favoritesKey) ?? []
+        var favorites = getFavoritesIDs()
         favorites.removeAll { $0 == driver.driverID }
         defaults.set(favorites, forKey: favoritesKey)
         favoriteDrivers.removeAll { $0.driverID == driver.driverID }
     }
     
+    fileprivate func getFavoritesIDs() -> [String] {
+        return defaults.stringArray(forKey: favoritesKey) ?? []
+    }
+    
     func removeFavorites(at offsets: IndexSet) {
-        var favorites = defaults.stringArray(forKey: favoritesKey) ?? []
+        var favorites = getFavoritesIDs()
         
         for index in offsets.reversed() {
             let driver = favoriteDrivers[index]

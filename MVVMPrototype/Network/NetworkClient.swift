@@ -11,10 +11,8 @@ import Foundation
 
 enum APIError: Error, Equatable {
     case invalidURL
-    case noData
     case decodingError
     case networkError
-    case testError
 }
 
 actor NetworkClient: NetworkClientProtocol {
@@ -39,16 +37,8 @@ actor NetworkClient: NetworkClientProtocol {
         return response.mrData.raceTable.races
     }
     
-    /*func fetchConstructorStandings() async throws -> [ConstructorStanding] {
-        let urlString = "\(baseURL)/current/constructorStandings.json"
-        let response: ConstructorStandingsResponse = try await performRequest(with: urlString)
-        return response.MRData.StandingsTable.StandingsLists.first?.ConstructorStandings ?? []
-    }*/
-    
     private func performRequest<T: Decodable>(with urlString: String) async throws -> T {
-        guard let url = URL(string: urlString) else {
-            throw APIError.invalidURL
-        }
+        let url = URL(string: urlString)!
         
         do {
             let (data, _) = try await urlSession.data(from: url)
@@ -56,18 +46,7 @@ actor NetworkClient: NetworkClientProtocol {
             //print(decodedData)
             return decodedData
         } catch let error as DecodingError {
-            switch error {
-            case .typeMismatch(let key, let value):
-                print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
-            case .valueNotFound(let key, let value):
-                print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
-            case .keyNotFound(let key, let value):
-                print("error \(key), value \(value) and ERROR: \(error.localizedDescription)")
-            case .dataCorrupted(let key):
-                print("error \(key), and ERROR: \(error.localizedDescription)")
-            default:
-                print("ERROR: \(error.localizedDescription)")
-            }
+            print(error.localizedDescription)
             throw APIError.decodingError
         } catch {
             print(error.localizedDescription)

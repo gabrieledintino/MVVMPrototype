@@ -1,27 +1,25 @@
 //
-//  DriversViewModelTests.swift
+//  CuckooMockTest.swift
 //  MVVMPrototypeTests
 //
-//  Created by Gabriele D'intino (EXT) on 22/07/24.
+//  Created by Gabriele D'intino (EXT) on 31/07/24.
 //
 
 import XCTest
 @testable import MVVMPrototype
+import Cuckoo
+
 
 final class DriversListViewModelTests: XCTestCase {
     var drivers: [Driver]!
     var driverResponse: DriversListYearResponse!
-    
+    var mockNetworkClient: MockNetworkClientProtocol!
     var sut: DriversListViewModel!
-    var mockNetworkClient: MockNetworkClient!
-    
     
     override func setUp() {
         super.setUp()
-        
-        mockNetworkClient = MockNetworkClient()
+        mockNetworkClient = MockNetworkClientProtocol()
         sut = DriversListViewModel(networkClient: mockNetworkClient)
-        
         
         driverResponse = try! FileUtils.loadJSONData(from: "drivers", withExtension: "json", in: type(of: self))
         drivers = driverResponse.mrData.driverTable.drivers
@@ -35,7 +33,11 @@ final class DriversListViewModelTests: XCTestCase {
     
     func testFetchDriversSuccess() async throws {
         // Given
-        mockNetworkClient.mockDrivers = drivers
+        stub(mockNetworkClient) { stub in
+          when(stub.fetchDrivers()).then { _ in
+              return self.drivers
+          }
+        }
         
         // When
         await sut.fetchDrivers()
@@ -44,13 +46,19 @@ final class DriversListViewModelTests: XCTestCase {
         XCTAssertFalse(sut.isLoading)
         XCTAssertNil(sut.errorMessage)
         XCTAssertEqual(sut.drivers, drivers)
+        verify(mockNetworkClient).fetchDrivers()
+        verifyNoMoreInteractions(mockNetworkClient)
     }
     
     func testFetchDriversFailure() async {
         // Given
         let expectedError = NSError(domain: "TestError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Network error"])
-        mockNetworkClient.mockError = expectedError
         
+        stub(mockNetworkClient) { stub in
+          when(stub.fetchDrivers()).then { _ in
+              throw expectedError
+          }
+        }
         // When
         await sut.fetchDrivers()
         
@@ -58,6 +66,8 @@ final class DriversListViewModelTests: XCTestCase {
         XCTAssertFalse(sut.isLoading)
         XCTAssertEqual(sut.errorMessage, expectedError.localizedDescription)
         XCTAssertTrue(sut.drivers.isEmpty)
+        verify(mockNetworkClient).fetchDrivers()
+        verifyNoMoreInteractions(mockNetworkClient)
     }
     
     func testFilteredDrivers() {
@@ -96,5 +106,4 @@ final class DriversListViewModelTests: XCTestCase {
         // Then
         XCTAssertTrue(sut.filteredDrivers.isEmpty)
     }
-    
 }

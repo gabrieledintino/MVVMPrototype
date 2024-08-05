@@ -14,8 +14,10 @@ import Foundation
     var isFavorite: Bool = false
     
     private let driver: Driver
-    private let defaults = UserDefaults.standard
+    private let defaults: UserDefaults
     private let favoritesKey = "FavoriteDrivers"
+    
+    private let networkClient: NetworkClientProtocol
     
     var formattedDateOfBirth: String? {
             // Create a date formatter to parse the date string
@@ -37,8 +39,10 @@ import Foundation
             return formattedDate
         }
     
-    init(driver: Driver) {
+    init(driver: Driver, networkClient: NetworkClientProtocol = NetworkClient.shared, userDefaults: UserDefaults = UserDefaults.standard) {
+        self.networkClient = networkClient
         self.driver = driver
+        self.defaults = userDefaults
         self.isFavorite = getFavoriteStatus()
     }
     
@@ -47,7 +51,7 @@ import Foundation
         errorMessage = nil
         
         do {
-            let response = try await NetworkClient.shared.fetchRaceResults(forDriver: driver.driverID)
+            let response = try await networkClient.fetchRaceResults(forDriver: driver.driverID)
             races = response
         } catch {
             errorMessage = error.localizedDescription
@@ -56,8 +60,12 @@ import Foundation
         isLoading = false
     }
     
+    fileprivate func getCurrentFavorites() -> [String] {
+        return defaults.stringArray(forKey: favoritesKey) ?? []
+    }
+    
     func toggleFavorite() {
-        var favorites = defaults.stringArray(forKey: favoritesKey) ?? []
+        var favorites = getCurrentFavorites()
         
         if favorites.contains(driver.driverID) {
             favorites.removeAll { $0 == driver.driverID }
@@ -70,7 +78,7 @@ import Foundation
     }
     
     private func getFavoriteStatus() -> Bool {
-        let favorites = defaults.stringArray(forKey: favoritesKey) ?? []
+        let favorites = getCurrentFavorites()
         return favorites.contains(driver.driverID)
     }
 }
