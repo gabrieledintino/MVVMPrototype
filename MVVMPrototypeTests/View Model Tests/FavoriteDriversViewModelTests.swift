@@ -36,7 +36,7 @@ class FavoriteDriversViewModelTests: XCTestCase {
     }
     
     func testLoadFavoriteDrivers() async {
-        // Arrange
+        // Given
         let mockDriverIDs = ["leclerc", "albon"]
         mockUserDefaults.set(mockDriverIDs, forKey: "FavoriteDrivers")
         stub(mockNetworkClient) { stub in
@@ -45,10 +45,10 @@ class FavoriteDriversViewModelTests: XCTestCase {
           }
         }
         
-        // Act
+        // When
         await viewModel.loadFavoriteDrivers()
         
-        // Assert
+        // Then
         XCTAssertFalse(viewModel.isLoading)
         XCTAssertNil(viewModel.errorMessage)
         XCTAssertEqual(viewModel.favoriteDrivers.count, 2)
@@ -57,7 +57,7 @@ class FavoriteDriversViewModelTests: XCTestCase {
     }
     
     func testLoadFavoriteDriversThrowsError() async {
-        // Arrange
+        // Given
         let mockDriverIDs = ["leclerc", "albon"]
         mockUserDefaults.set(mockDriverIDs, forKey: "FavoriteDrivers")
         
@@ -66,10 +66,10 @@ class FavoriteDriversViewModelTests: XCTestCase {
             when(stub.fetchDrivers()).thenThrow(expectedError)
         }
         
-        // Act
+        // When
         await viewModel.loadFavoriteDrivers()
         
-        // Assert
+        // Then
         XCTAssertFalse(viewModel.isLoading)
         XCTAssertEqual(viewModel.errorMessage, expectedError.localizedDescription)
         XCTAssertEqual(viewModel.favoriteDrivers.count, 0)
@@ -80,17 +80,17 @@ class FavoriteDriversViewModelTests: XCTestCase {
     }
     
     func testLoadFavoriteDriversWhenEmpty() async {
-        // Arrange
+        // Given
         stub(mockNetworkClient) { stub in
           when(stub.fetchDrivers()).then { _ in
               return self.testDrivers
           }
         }
         
-        // Act
+        // When
         await viewModel.loadFavoriteDrivers()
         
-        // Assert
+        // Then
         XCTAssertFalse(viewModel.isLoading)
         XCTAssertNil(viewModel.errorMessage)
         XCTAssertEqual(viewModel.favoriteDrivers.count, 0)
@@ -100,15 +100,15 @@ class FavoriteDriversViewModelTests: XCTestCase {
     }
     
     func testRemoveFavorite() {
-        // Arrange
+        // Given
         let mockDriver = Driver(driverID: "driver1", permanentNumber: "1", code: "D1", url: "http://example.com", givenName: "John", familyName: "Doe", dateOfBirth: "1990-01-01", nationality: "American")
         viewModel.favoriteDrivers = [mockDriver]
         mockUserDefaults.set(["driver1"], forKey: "FavoriteDrivers")
         
-        // Act
+        // When
         viewModel.removeFavorite(mockDriver)
         
-        // Assert
+        // Then
         XCTAssertTrue(viewModel.favoriteDrivers.isEmpty)
         XCTAssertTrue(mockUserDefaults.array(forKey: "FavoriteDrivers")!.isEmpty)
 
@@ -116,13 +116,13 @@ class FavoriteDriversViewModelTests: XCTestCase {
     }
     
     func testRemoveFavoriteWhenEmpty() {
-        // Arrange
+        // Given
         let mockDriver = Driver(driverID: "driver1", permanentNumber: "1", code: "D1", url: "http://example.com", givenName: "John", familyName: "Doe", dateOfBirth: "1990-01-01", nationality: "American")
         
-        // Act
+        // When
         viewModel.removeFavorite(mockDriver)
         
-        // Assert
+        // Then
         XCTAssertTrue(viewModel.favoriteDrivers.isEmpty)
         XCTAssertTrue(mockUserDefaults.array(forKey: "FavoriteDrivers")!.isEmpty)
 
@@ -130,7 +130,7 @@ class FavoriteDriversViewModelTests: XCTestCase {
     }
     
     func testRemoveFavorites() {
-        // Arrange
+        // Given
         let mockDrivers = [
             Driver(driverID: "driver1", permanentNumber: "1", code: "D1", url: "http://example.com", givenName: "John", familyName: "Doe", dateOfBirth: "1990-01-01", nationality: "American"),
             Driver(driverID: "driver2", permanentNumber: "2", code: "D2", url: "http://example.com", givenName: "Jane", familyName: "Doe", dateOfBirth: "1991-01-01", nationality: "British")
@@ -138,10 +138,10 @@ class FavoriteDriversViewModelTests: XCTestCase {
         viewModel.favoriteDrivers = mockDrivers
         mockUserDefaults.set(["driver1", "driver2"], forKey: "FavoriteDrivers")
         
-        // Act
+        // When
         viewModel.removeFavorites(at: IndexSet(integer: 0))
         
-        // Assert
+        // Then
         XCTAssertEqual(viewModel.favoriteDrivers.count, 1)
         XCTAssertEqual(viewModel.favoriteDrivers[0].driverID, "driver2")
         XCTAssertEqual(mockUserDefaults.stringArray(forKey: "FavoriteDrivers"), ["driver2"])

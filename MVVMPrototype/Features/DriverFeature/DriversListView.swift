@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct DriversListView: View {
-    @State private var viewModel = DriversListViewModel()
+    @State var viewModel = DriversListViewModel()
+    internal let inspection = Inspection<Self>()
     
     var body: some View {
         NavigationView {
             ZStack {
                 if viewModel.isLoading {
                     ProgressView()
+                        .accessibilityIdentifier("progress_view")
                 } else if let errorMessage = viewModel.errorMessage {
                     ErrorView(message: errorMessage)
+                        .accessibilityIdentifier("error_view")
                 } else {
                     driversList
                 }
@@ -27,14 +30,17 @@ struct DriversListView: View {
         .task {
             await viewModel.fetchDrivers()
         }
+        .onReceive(inspection.notice) { self.inspection.visit(self, $0) }
     }
     
     private var driversList: some View {
         List(viewModel.filteredDrivers, id: \.driverID) { driver in
             NavigationLink(destination: DriverDetailView(driver: driver)) {
                 DriverRow(driver: driver)
+                    .accessibilityIdentifier("DriverCell_\(driver.driverID)")
             }
         }
+        .accessibilityIdentifier("list_view")
     }
 }
 

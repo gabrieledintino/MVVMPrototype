@@ -29,8 +29,8 @@ struct DriverDetailView: View {
                 if viewModel.isLoading {
                     ProgressView()
                 } else if let errorMessage = viewModel.errorMessage {
-                    Text(errorMessage)
-                        .foregroundColor(.red)
+                    ErrorView(message: errorMessage)
+                        .accessibilityIdentifier("error_view")
                 } else if viewModel.races.isEmpty {
                     Text("No race results available.")
                 } else {
@@ -47,6 +47,7 @@ struct DriverDetailView: View {
                     viewModel.toggleFavorite()
                 }) {
                     Image(systemName: viewModel.isFavorite ? "star.fill" : "star")
+                        .accessibilityIdentifier(viewModel.isFavorite ? "star.fill" : "star")
                 }
             }
         }
