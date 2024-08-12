@@ -11,6 +11,10 @@ struct DriversListView: View {
     @State var viewModel = DriversListViewModel()
     internal let inspection = Inspection<Self>()
     
+    init(viewModel: DriversListViewModel = DriversListViewModel()) {
+        _viewModel = State(wrappedValue: viewModel)
+    }
+    
     var body: some View {
         NavigationView {
             ZStack {

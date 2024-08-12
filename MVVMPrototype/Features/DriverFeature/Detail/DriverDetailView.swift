@@ -9,11 +9,17 @@ import SwiftUI
 
 struct DriverDetailView: View {
     let driver: Driver
-    @State private var viewModel: DriverDetailViewModel
-    
-    init(driver: Driver) {
+    @State internal var viewModel: DriverDetailViewModel
+    internal let inspection = Inspection<Self>()
+
+    init(driver: Driver, networkClient: NetworkClientProtocol = NetworkClient.shared, userDefaults: UserDefaults = .standard) {
         self.driver = driver
-        _viewModel = State(initialValue: DriverDetailViewModel(driver: driver))
+        _viewModel = State(initialValue: DriverDetailViewModel(driver: driver, networkClient: networkClient, userDefaults: userDefaults))
+    }
+    
+    init(driver: Driver, viewModel: DriverDetailViewModel) {
+        self.driver = driver
+        _viewModel = State(wrappedValue: viewModel)
     }
     
     var body: some View {
@@ -23,20 +29,25 @@ struct DriverDetailView: View {
                 InfoRow(title: "Nationality", value: driver.nationality)
                 InfoRow(title: "Date of Birth", value: driver.dateOfBirth)
                 InfoRow(title: "Driver Number", value: driver.permanentNumber)
+                    .accessibilityIdentifier("info_view")
+
             }
             
             Section(header: Text("Race Results for current season")) {
                 if viewModel.isLoading {
                     ProgressView()
+                        .accessibilityIdentifier("progress_view")
                 } else if let errorMessage = viewModel.errorMessage {
                     ErrorView(message: errorMessage)
                         .accessibilityIdentifier("error_view")
                 } else if viewModel.races.isEmpty {
                     Text("No race results available.")
+                        .accessibilityIdentifier("detail_text_view")
                 } else {
                     ForEach(viewModel.races, id: \.round) { race in
                         RaceResultRow(race: race, driverID: driver.driverID)
                     }
+                    .accessibilityIdentifier("list_view")
                 }
             }
         }
@@ -54,6 +65,7 @@ struct DriverDetailView: View {
         .task {
             await viewModel.fetchRaceResults()
         }
+        .onReceive(inspection.notice) { self.inspection.visit(self, $0) }
     }
 }
 

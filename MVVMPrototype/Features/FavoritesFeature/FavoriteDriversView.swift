@@ -8,18 +8,26 @@
 import SwiftUI
 
 struct FavoriteDriversView: View {
-    @State private var viewModel = FavoriteDriversViewModel()
+    @State internal var viewModel = FavoriteDriversViewModel()
+    internal let inspection = Inspection<Self>()
     
+    init(viewModel: FavoriteDriversViewModel = FavoriteDriversViewModel()) {
+        _viewModel = State(wrappedValue: viewModel)
+    }
+
     var body: some View {
         NavigationView {
             ZStack {
                 if viewModel.isLoading {
                     ProgressView()
+                        .accessibilityIdentifier("progress_view")
                 } else if let errorMessage = viewModel.errorMessage {
                     ErrorView(message: errorMessage)
+                        .accessibilityIdentifier("error_view")
                 } else if viewModel.favoriteDrivers.isEmpty {
                     Text("No favorite drivers yet")
                         .foregroundColor(.secondary)
+                        .accessibilityIdentifier("text_view")
                 } else {
                     favoriteDriversList
                 }
@@ -29,6 +37,7 @@ struct FavoriteDriversView: View {
         .task {
             await viewModel.loadFavoriteDrivers()
         }
+        .onReceive(inspection.notice) { self.inspection.visit(self, $0) }
     }
     
     private var favoriteDriversList: some View {
@@ -39,6 +48,7 @@ struct FavoriteDriversView: View {
                 }
             }
             .onDelete(perform: viewModel.removeFavorites)
+            .accessibilityIdentifier("list_view")
         }
     }
 }

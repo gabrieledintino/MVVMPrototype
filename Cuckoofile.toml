@@ -8,7 +8,9 @@ imports = ["Foundation"]
 # @testable imports if needed.
 testableImports = ["MVVMPrototype"]
 sources = [
-    "MVVMPrototype/Network/*.swift",
+    #"MVVMPrototype/Network/*.swift",
+    #"MVVMPrototype/Features/DriverFeature/Detail/*.swift",
+    "MVVMPrototype/**/*.swift",
 ]
 exclude = []#["ExcludedTestClass"]
 # Optionally you can use a regular expression to filter only specific classes/protocols.
