@@ -18,7 +18,7 @@ final class DriverDetailViewUITests: XCTestCase {
     }
     
     func testDriverInformationDisplay() throws {
-        // Wait for the list to load (adjust timeout as needed)
+        // Wait for the list to load
         let firstDriverCell = app.cells.firstMatch
         XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 5))
         // Navigate to DriverDetailView
@@ -50,7 +50,7 @@ final class DriverDetailViewUITests: XCTestCase {
     }
     
     func testRaceResultsDisplay() throws {
-        // Wait for the list to load (adjust timeout as needed)
+        // Wait for the list to load
         let firstDriverCell = app.cells.firstMatch
         XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 5))
         // Navigate to DriverDetailView
@@ -72,7 +72,7 @@ final class DriverDetailViewUITests: XCTestCase {
     }
     
     func testFavoriteButtonFunctionality() throws {
-        // Wait for the list to load (adjust timeout as needed)
+        // Wait for the list to load
         let firstDriverCell = app.cells.firstMatch
         XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 5))
         // Navigate to DriverDetailView
@@ -86,7 +86,7 @@ final class DriverDetailViewUITests: XCTestCase {
         favoriteButton.tap()
         
         // Check if the button image changed to filled star
-        let filledStarButton = app.buttons["star.fill"]
+        let filledStarButton = app.navigationBars["Charles Leclerc"].buttons["star.fill"]
         XCTAssertTrue(filledStarButton.exists)
         
         // Tap again to unfavorite

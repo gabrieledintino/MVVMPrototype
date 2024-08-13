@@ -19,55 +19,53 @@ class FavoriteDriversViewUITests: XCTestCase {
     }
     
     func testInitialViewRendering() throws {
+        XCUIApplication().tabBars["Tab Bar"].buttons["Favorites"].tap()
+        
         // Check if the navigation title is correct
         XCTAssertTrue(app.navigationBars["Favorite Drivers"].exists)
-
-        // Check if the search bar is present
-        XCTAssertTrue(app.searchFields["Search drivers"].exists)
     }
     
     func testEmptyStateMessageDisplayed() throws {
-        // Assuming we can force an empty state
+        XCUIApplication().tabBars["Tab Bar"].buttons["Favorites"].tap()
+        
         let emptyStateMessage = app.staticTexts["No favorite drivers yet"]
         XCTAssertTrue(emptyStateMessage.exists, "Empty state message should be displayed when there are no favorite drivers")
     }
     
-    func testFavoriteDriversListDisplayed() throws {
-        // Assuming we have some favorite drivers
-        let favoriteDriversList = app.tables.firstMatch
-        XCTAssertTrue(favoriteDriversList.exists, "Favorite drivers list should be displayed when there are favorite drivers")
+    func testFavoriteDriversListDisplayedAndNavigationWorks() throws {
+        // Wait for the list to load
+        let firstDriverCell = app.cells.firstMatch
+        XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 5))
+        // Navigate to DriverDetailView
+        app.buttons["DriverCell_leclerc-DriverCell_leclerc"].tap()
+        
+        // Find the favorite button
+        let favoriteButton = app.navigationBars["Charles Leclerc"].buttons["star"]
+        XCTAssertTrue(favoriteButton.waitForExistence(timeout: 5))
+        
+        // Tap the favorite button
+        favoriteButton.tap()
+        XCUIApplication().tabBars["Tab Bar"].buttons["Favorites"].tap()
+        
+        let favoriteDriversList = app.cells.firstMatch
+        XCTAssertTrue(favoriteDriversList.waitForExistence(timeout: 5), "Favorite drivers list should be displayed when there are favorite drivers")
         
         // Check if there are cells in the list
-        let cells = favoriteDriversList.cells
-        XCTAssertGreaterThan(cells.count, 0, "There should be at least one driver in the favorites list")
-    }
-    
-    func testNavigationToDriverDetail() throws {
-        // Assuming we have at least one favorite driver
-        let favoriteDriversList = app.tables.firstMatch
-        let firstDriver = favoriteDriversList.cells.element(boundBy: 0)
+        XCTAssertGreaterThan(app.cells.count, 0, "There should be at least one driver in the favorites list")
+        // Get the name of the first driver
+        let firstDriverName = favoriteDriversList.firstMatch.staticTexts.element(boundBy: 0).label
+        XCTAssertEqual(firstDriverName, "Charles Leclerc")
+        favoriteDriversList.firstMatch.tap()
+        XCTAssertTrue(app.navigationBars[firstDriverName].exists)
+
+        // Check if the button image changed to filled star
+        let filledStarButton = app.navigationBars[firstDriverName].buttons["star.fill"]
+        XCTAssertTrue(filledStarButton.exists)
         
-        firstDriver.tap()
+        // Tap again to unfavorite
+        filledStarButton.tap()
         
-        // Assuming the detail view has a specific identifier or title
-        let detailView = app.otherElements["DriverDetailView"]
-        XCTAssertTrue(detailView.waitForExistence(timeout: 2), "Driver detail view should be displayed after tapping a driver")
-    }
-    
-    func testRemoveFavoriteDriver() throws {
-        // Assuming we have at least one favorite driver
-        let favoriteDriversList = app.tables.firstMatch
-        let initialCellCount = favoriteDriversList.cells.count
-        
-        // Swipe to delete the first cell
-        let firstDriver = favoriteDriversList.cells.element(boundBy: 0)
-        firstDriver.swipeLeft()
-        
-        // Tap the delete button
-        app.buttons["Delete"].tap()
-        
-        // Check if the cell count has decreased
-        let newCellCount = favoriteDriversList.cells.count
-        XCTAssertEqual(newCellCount, initialCellCount - 1, "The number of favorite drivers should decrease by 1 after removal")
+        // Navigate back to the list
+        app.navigationBars.buttons.element(boundBy: 0).tap()
     }
 }

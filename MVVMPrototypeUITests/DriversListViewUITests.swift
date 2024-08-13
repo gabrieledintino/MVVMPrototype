@@ -104,7 +104,6 @@ final class DriversListViewUITests: XCTestCase {
         firstDriverCell.tap()
 
         // Check if we've navigated to the detail view
-        // This assumes that the detail view's title is the driver's name
         XCTAssertTrue(app.navigationBars[firstDriverName].exists)
 
         // Navigate back to the list
