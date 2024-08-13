@@ -1,8 +1,8 @@
 //
-//  FavorireDriversViewUITests.swift
+//  TestUiTest.swift
 //  MVVMPrototypeTests
 //
-//  Created by Gabriele D'intino (EXT) on 10/08/24.
+//  Created by Gabriele D'intino (EXT) on 05/08/24.
 //
 
 import XCTest
@@ -11,12 +11,12 @@ import ViewInspector
 import SwiftUI
 import Cuckoo
 
-final class FavoriteDriversViewUITests: XCTestCase {
+class DriversListViewUITests: XCTestCase {
     var drivers: [Driver]!
     var driverResponse: DriversListYearResponse!
-    var mockVM: MockFavoriteDriversViewModel!
-    var originalVM: FavoriteDriversViewModel!
-    var sut: FavoriteDriversView!
+    var mockVM: MockDriversListViewModel!
+    var originalVM: DriversListViewModel!
+    var sut: DriversListView!
     
     override func setUp() {
         super.setUp()
@@ -24,14 +24,22 @@ final class FavoriteDriversViewUITests: XCTestCase {
         driverResponse = try! FileUtils.loadJSONData(from: "drivers", withExtension: "json", in: type(of: self))
         drivers = driverResponse.mrData.driverTable.drivers
         
-        mockVM = MockFavoriteDriversViewModel()
-        originalVM = FavoriteDriversViewModel()
+        mockVM = MockDriversListViewModel()
+        originalVM = DriversListViewModel()        
         mockVM.enableDefaultImplementation(originalVM)
-        sut = FavoriteDriversView(viewModel: mockVM)
+        sut = DriversListView(viewModel: mockVM)
     }
     
     override func tearDown() {
         super.tearDown()
+    }
+    
+    func testTaskMethodIsInvoked() throws {
+        let exp = sut.inspection.inspect(after: 1.0) { view in
+            verify(self.mockVM).fetchDrivers()
+        }
+        ViewHosting.host(view: sut)
+        wait(for: [exp], timeout: 2.0)
     }
     
     func testProgressViewIsShownAndOthersHidden() throws {
@@ -41,7 +49,6 @@ final class FavoriteDriversViewUITests: XCTestCase {
         let exp = sut.inspection.inspect() { view in
             XCTAssertTrue(try view.actualView().viewModel.isLoading)
             XCTAssertFalse(try view.find(viewWithAccessibilityIdentifier: "progress_view").isHidden())
-            XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "text_view"))
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "error_view"))
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "list_view"))
         }
@@ -54,29 +61,13 @@ final class FavoriteDriversViewUITests: XCTestCase {
             when(stub.errorMessage.get).thenReturn("Test error")
         }
         let exp = sut.inspection.inspect() { view in
+            try view.actualView().viewModel.errorMessage = "Test errordsadasdsa"
+
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "progress_view"))
             XCTAssertFalse(try view.find(viewWithAccessibilityIdentifier: "error_view").isHidden())
             XCTAssertEqual(try view.navigationView().zStack().view(ErrorView.self, 0).vStack().image(0).actualImage().name(), "exclamationmark.triangle")
             XCTAssertEqual(try view.navigationView().zStack().view(ErrorView.self, 0).vStack().text(1).string(), "Error")
             XCTAssertEqual(try view.navigationView().zStack().view(ErrorView.self, 0).vStack().text(2).string(), "Test error")
-            XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "text_view"))
-            XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "list_view"))
-
-        }
-        ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
-    }
-    
-    func testDriverListIsEmptyShowsText() throws {
-        stub(mockVM) { stub in
-            when(stub.favoriteDrivers.get).thenReturn([])
-        }
-        let exp = sut.inspection.inspect() { view in
-            XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "progress_view"))
-            XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "error_view"))
-            XCTAssertFalse(try view.find(viewWithAccessibilityIdentifier: "text_view").isHidden())
-            XCTAssertEqual(try view.navigationView().zStack().text(0).string(), "No favorite drivers yet")
-            XCTAssertEqual(try view.navigationView().zStack().text(0).attributes().foregroundColor(), .secondary)
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "list_view"))
         }
         ViewHosting.host(view: sut)
@@ -85,15 +76,12 @@ final class FavoriteDriversViewUITests: XCTestCase {
     
     func testDriverListIsShownAndOthersHidden() throws {
         stub(mockVM) { stub in
-            when(stub.favoriteDrivers.get).thenReturn([self.drivers[0], self.drivers[1], self.drivers[2]])
+            when(stub.drivers.get).thenReturn(self.drivers)
         }
         let exp = sut.inspection.inspect() { view in
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "progress_view"))
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "error_view"))
-            XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "text_view"))
             XCTAssertFalse(try view.find(viewWithAccessibilityIdentifier: "list_view").isHidden())
-            XCTAssertEqual(try view.navigationView().zStack().list(0).forEach(0).count, 3)
-            XCTAssertThrowsError(try view.navigationView().zStack().list(0).forEach(0).navigationLink(4))
         }
         ViewHosting.host(view: sut)
         wait(for: [exp], timeout: 0.1)
@@ -101,11 +89,13 @@ final class FavoriteDriversViewUITests: XCTestCase {
     
     func testDriverRowIsRenderedCorrectly() throws {
         stub(mockVM) { stub in
-            when(stub.favoriteDrivers.get).thenReturn([self.drivers[0]])
+            when(stub.filteredDrivers.get).thenReturn(self.drivers)
         }
         let exp = sut.inspection.inspect() { view in
             XCTAssertEqual(try view.navigationView().zStack().list(0).forEach(0).navigationLink(0).labelView().view(DriverRow.self).vStack().text(0).string(), "Alexander Albon")
             XCTAssertEqual(try view.navigationView().zStack().list(0).forEach(0).navigationLink(0).labelView().view(DriverRow.self).vStack().text(1).string(), "Thai")
+            XCTAssertEqual(try view.navigationView().zStack().list(0).forEach(0).navigationLink(1).labelView().view(DriverRow.self).vStack().text(0).string(), "Fernando Alonso")
+            XCTAssertEqual(try view.navigationView().zStack().list(0).forEach(0).navigationLink(1).labelView().view(DriverRow.self).vStack().text(1).string(), "Spanish")
         }
         ViewHosting.host(view: sut)
         wait(for: [exp], timeout: 0.1)

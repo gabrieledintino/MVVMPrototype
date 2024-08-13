@@ -57,6 +57,17 @@
                ReferencedContainer = "container:MVVMPrototype.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5C2AE1332C6C026E00F9157C"
+               BuildableName = "MVVMPrototypeIntegrationTests.xctest"
+               BlueprintName = "MVVMPrototypeIntegrationTests"
+               ReferencedContainer = "container:MVVMPrototype.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

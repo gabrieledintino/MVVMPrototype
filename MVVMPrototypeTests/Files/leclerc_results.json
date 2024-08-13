@@ -5,7 +5,7 @@
         "url": "http://ergast.com/api/f1/2024/drivers/leclerc/results.json",
         "limit": "30",
         "offset": "0",
-        "total": "13",
+        "total": "14",
         "RaceTable": {
             "season": "2024",
             "driverId": "leclerc",
@@ -779,6 +779,67 @@
                                 "AverageSpeed": {
                                     "units": "kph",
                                     "speed": "191.910"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "season": "2024",
+                    "round": "14",
+                    "url": "https://en.wikipedia.org/wiki/2024_Belgian_Grand_Prix",
+                    "raceName": "Belgian Grand Prix",
+                    "Circuit": {
+                        "circuitId": "spa",
+                        "url": "http://en.wikipedia.org/wiki/Circuit_de_Spa-Francorchamps",
+                        "circuitName": "Circuit de Spa-Francorchamps",
+                        "Location": {
+                            "lat": "50.4372",
+                            "long": "5.97139",
+                            "locality": "Spa",
+                            "country": "Belgium"
+                        }
+                    },
+                    "date": "2024-07-28",
+                    "time": "13:00:00Z",
+                    "Results": [
+                        {
+                            "number": "16",
+                            "position": "3",
+                            "positionText": "3",
+                            "points": "15",
+                            "Driver": {
+                                "driverId": "leclerc",
+                                "permanentNumber": "16",
+                                "code": "LEC",
+                                "url": "http://en.wikipedia.org/wiki/Charles_Leclerc",
+                                "givenName": "Charles",
+                                "familyName": "Leclerc",
+                                "dateOfBirth": "1997-10-16",
+                                "nationality": "Monegasque"
+                            },
+                            "Constructor": {
+                                "constructorId": "ferrari",
+                                "url": "http://en.wikipedia.org/wiki/Scuderia_Ferrari",
+                                "name": "Ferrari",
+                                "nationality": "Italian"
+                            },
+                            "grid": "1",
+                            "laps": "44",
+                            "status": "Finished",
+                            "Time": {
+                                "millis": "9075",
+                                "time": "+8.549"
+                            },
+                            "FastestLap": {
+                                "rank": "8",
+                                "lap": "33",
+                                "Time": {
+                                    "time": "1:47.013"
+                                },
+                                "AverageSpeed": {
+                                    "units": "kph",
+                                    "speed": "235.619"
                                 }
                             }
                         }

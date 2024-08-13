@@ -37,6 +37,14 @@ final class DriverDetailViewUITests: XCTestCase {
         super.tearDown()
     }
     
+//    func testTaskMethodIsInvoked() throws {
+//        let exp = sut.inspection.inspect(after: 1.0) { view in
+//            verify(self.mockVM).fetchRaceResults("leclerc")
+//        }
+//        ViewHosting.host(view: sut)
+//        wait(for: [exp], timeout: 2.0)
+//    }
+    
     func testProgressViewIsShownAndOthersHidden() throws {
         stub(mockVM) { stub in
             when(stub.isLoading.get).thenReturn(true)

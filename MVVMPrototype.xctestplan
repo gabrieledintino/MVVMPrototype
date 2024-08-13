@@ -28,6 +28,14 @@
       "parallelizable" : true,
       "target" : {
         "containerPath" : "container:MVVMPrototype.xcodeproj",
+        "identifier" : "5C2AE1332C6C026E00F9157C",
+        "name" : "MVVMPrototypeIntegrationTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:MVVMPrototype.xcodeproj",
         "identifier" : "46063B832C457F0A0046FEB3",
         "name" : "MVVMPrototypeUITests"
       }

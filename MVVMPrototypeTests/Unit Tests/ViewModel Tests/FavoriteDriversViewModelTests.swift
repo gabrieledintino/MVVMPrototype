@@ -75,8 +75,6 @@ class FavoriteDriversViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.favoriteDrivers.count, 0)
         verify(mockNetworkClient).fetchDrivers()
         verifyNoMoreInteractions(mockNetworkClient)
-        //XCTAssertEqual(viewModel.favoriteDrivers[0].driverID, "albon")
-        //XCTAssertEqual(viewModel.favoriteDrivers[1].driverID, "leclerc")
     }
     
     func testLoadFavoriteDriversWhenEmpty() async {
