@@ -52,8 +52,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "46063B832C457F0A0046FEB3"
-               BuildableName = "MVVMPrototypeUITests.xctest"
-               BlueprintName = "MVVMPrototypeUITests"
+               BuildableName = "MVVMPrototypeE2ETests.xctest"
+               BlueprintName = "MVVMPrototypeE2ETests"
                ReferencedContainer = "container:MVVMPrototype.xcodeproj">
             </BuildableReference>
          </TestableReference>

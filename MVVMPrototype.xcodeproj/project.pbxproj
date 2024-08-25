@@ -114,7 +114,7 @@
 		46063B712C457F090046FEB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46063B742C457F090046FEB3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		46063B7A2C457F0A0046FEB3 /* MVVMPrototypeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVVMPrototypeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		46063B842C457F0A0046FEB3 /* MVVMPrototypeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVVMPrototypeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		46063B842C457F0A0046FEB3 /* MVVMPrototypeE2ETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVVMPrototypeE2ETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C1704A82C5D27470051782A /* MVVMPrototype.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MVVMPrototype.xctestplan; sourceTree = "<group>"; };
 		5C26C8262C62CC730038D938 /* ErrorViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewUITests.swift; sourceTree = "<group>"; };
 		5C26C82D2C62D13B0038D938 /* DriverRowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverRowUITests.swift; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 			children = (
 				46063B6A2C457F070046FEB3 /* MVVMPrototype.app */,
 				46063B7A2C457F0A0046FEB3 /* MVVMPrototypeTests.xctest */,
-				46063B842C457F0A0046FEB3 /* MVVMPrototypeUITests.xctest */,
+				46063B842C457F0A0046FEB3 /* MVVMPrototypeE2ETests.xctest */,
 				5C2AE1342C6C026E00F9157C /* MVVMPrototypeIntegrationTests.xctest */,
 			);
 			name = Products;
@@ -479,9 +479,9 @@
 			productReference = 46063B7A2C457F0A0046FEB3 /* MVVMPrototypeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		46063B832C457F0A0046FEB3 /* MVVMPrototypeUITests */ = {
+		46063B832C457F0A0046FEB3 /* MVVMPrototypeE2ETests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 46063B942C457F0A0046FEB3 /* Build configuration list for PBXNativeTarget "MVVMPrototypeUITests" */;
+			buildConfigurationList = 46063B942C457F0A0046FEB3 /* Build configuration list for PBXNativeTarget "MVVMPrototypeE2ETests" */;
 			buildPhases = (
 				46063B802C457F0A0046FEB3 /* Sources */,
 				46063B812C457F0A0046FEB3 /* Frameworks */,
@@ -492,11 +492,11 @@
 			dependencies = (
 				46063B862C457F0A0046FEB3 /* PBXTargetDependency */,
 			);
-			name = MVVMPrototypeUITests;
+			name = MVVMPrototypeE2ETests;
 			packageProductDependencies = (
 			);
 			productName = MVVMPrototypeUITests;
-			productReference = 46063B842C457F0A0046FEB3 /* MVVMPrototypeUITests.xctest */;
+			productReference = 46063B842C457F0A0046FEB3 /* MVVMPrototypeE2ETests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		5C2AE1332C6C026E00F9157C /* MVVMPrototypeIntegrationTests */ = {
@@ -569,7 +569,7 @@
 				46063B692C457F070046FEB3 /* MVVMPrototype */,
 				46063B792C457F0A0046FEB3 /* MVVMPrototypeTests */,
 				5C2AE1332C6C026E00F9157C /* MVVMPrototypeIntegrationTests */,
-				46063B832C457F0A0046FEB3 /* MVVMPrototypeUITests */,
+				46063B832C457F0A0046FEB3 /* MVVMPrototypeE2ETests */,
 			);
 		};
 /* End PBXProject section */
@@ -873,7 +873,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.MVVMPrototype;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gabrieledintino.MVVMPrototype;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -902,7 +902,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.MVVMPrototype;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gabrieledintino.MVVMPrototype;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -921,8 +921,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.MVVMPrototypeTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gabrieledintino.MVVMPrototypeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -941,8 +943,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.MVVMPrototypeTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gabrieledintino.MVVMPrototypeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -959,8 +963,10 @@
 				DEVELOPMENT_TEAM = 9L5Q35JV6A;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.MVVMPrototypeUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gabrieledintino.MVVMPrototypeE2ETests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -977,8 +983,10 @@
 				DEVELOPMENT_TEAM = 9L5Q35JV6A;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.MVVMPrototypeUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gabrieledintino.MVVMPrototypeE2ETests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -992,11 +1000,14 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9L5Q35JV6A;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.test.MVVMPrototypeIntegrationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gabrieledintino.MVVMPrototypeIntegrationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1010,11 +1021,14 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9L5Q35JV6A;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.test.MVVMPrototypeIntegrationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gabrieledintino.MVVMPrototypeIntegrationTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1052,7 +1066,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		46063B942C457F0A0046FEB3 /* Build configuration list for PBXNativeTarget "MVVMPrototypeUITests" */ = {
+		46063B942C457F0A0046FEB3 /* Build configuration list for PBXNativeTarget "MVVMPrototypeE2ETests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				46063B952C457F0A0046FEB3 /* Debug */,
