@@ -1,5 +1,4 @@
 {
-  "originHash" : "3df6c4ba37a8004d95284c0dc304f466d0b471ffc8ec31c64c0f5874bd8cc560",
   "pins" : [
     {
       "identity" : "aexml",
@@ -137,5 +136,5 @@
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }

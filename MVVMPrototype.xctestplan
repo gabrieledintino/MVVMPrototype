@@ -9,6 +9,8 @@
     }
   ],
   "defaultOptions" : {
+    "language" : "it",
+    "region" : "IT",
     "targetForVariableExpansion" : {
       "containerPath" : "container:MVVMPrototype.xcodeproj",
       "identifier" : "46063B692C457F070046FEB3",

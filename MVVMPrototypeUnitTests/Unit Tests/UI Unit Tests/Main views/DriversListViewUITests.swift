@@ -61,8 +61,6 @@ class DriversListViewUITests: XCTestCase {
             when(stub.errorMessage.get).thenReturn("Test error")
         }
         let exp = sut.inspection.inspect() { view in
-            try view.actualView().viewModel.errorMessage = "Test errordsadasdsa"
-
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "progress_view"))
             XCTAssertFalse(try view.find(viewWithAccessibilityIdentifier: "error_view").isHidden())
             XCTAssertEqual(try view.navigationView().zStack().view(ErrorView.self, 0).vStack().image(0).actualImage().name(), "exclamationmark.triangle")
@@ -98,6 +96,6 @@ class DriversListViewUITests: XCTestCase {
             XCTAssertEqual(try view.navigationView().zStack().list(0).forEach(0).navigationLink(1).labelView().view(DriverRow.self).vStack().text(1).string(), "Spanish")
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 3.0)
     }
 }

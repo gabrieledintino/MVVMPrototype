@@ -88,13 +88,11 @@ final class DriversListViewModelTests: XCTestCase {
         // Then
         XCTAssertEqual(sut.filteredDrivers, [driver1, driver2])
         
-        // When - Search for "Ham"
         sut.searchText = "alb"
         
         // Then
         XCTAssertEqual(sut.filteredDrivers, [driver1])
         
-        // When - Search for "Max"
         sut.searchText = "alo"
         
         // Then
