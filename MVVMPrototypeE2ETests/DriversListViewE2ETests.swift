@@ -54,6 +54,8 @@ final class DriversListViewUITests: XCTestCase {
         let searchField = app.searchFields["Search drivers"]
         searchField.tap()
         searchField.typeText(firstDriverName)
+        
+        Thread.sleep(forTimeInterval: 1.0)
 
         // Check that the search results contain the first driver
         XCTAssertTrue(app.cells.staticTexts[firstDriverName].exists)
