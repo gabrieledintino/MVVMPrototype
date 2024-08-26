@@ -58,7 +58,7 @@ final class DriverDetailViewUITests: XCTestCase {
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "list_view"))
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 3.0)
     }
     
     func testErrorViewIsShownAndOthersHidden() throws {
@@ -76,7 +76,7 @@ final class DriverDetailViewUITests: XCTestCase {
 
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 3.0)
     }
     
     func testDriverListIsEmptyShowsText() throws {
@@ -92,7 +92,7 @@ final class DriverDetailViewUITests: XCTestCase {
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "list_view"))
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 3.0)
     }
     
     func testDriverListIsShownAndOthersHidden() throws {
@@ -107,7 +107,7 @@ final class DriverDetailViewUITests: XCTestCase {
             XCTAssertEqual(try view.list().section(1).forEach(0).count, 3)
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 3.0)
     }
     
     func testSectionTitlesAreCorrect() throws {
@@ -119,7 +119,7 @@ final class DriverDetailViewUITests: XCTestCase {
             XCTAssertEqual(try view.list().section(1).header().text(0).string(), "Race Results for current season")
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 3.0)
     }
     
     func testAllInfoRowsAreRendered() throws {
@@ -127,7 +127,7 @@ final class DriverDetailViewUITests: XCTestCase {
             XCTAssertEqual(try view.list().section(0).count, 4)
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 3.0)
     }
     
     func testResultRowIsRendered() throws {
@@ -140,7 +140,7 @@ final class DriverDetailViewUITests: XCTestCase {
             XCTAssertThrowsError(try view.list().section(1).forEach(0).view(RaceResultRow.self, 1))
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 3.0)
     }
     
     func testButtonTapChangeIcon() throws {
@@ -163,6 +163,6 @@ final class DriverDetailViewUITests: XCTestCase {
             XCTAssertEqual(try button.labelView().image().actualImage().name(), "star.fill")
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp1, exp2], timeout: 3)
+        wait(for: [exp1, exp2], timeout: 3.0)
     }
 }

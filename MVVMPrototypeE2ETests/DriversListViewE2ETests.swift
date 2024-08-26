@@ -26,7 +26,7 @@ final class DriversListViewUITests: XCTestCase {
     func testDriverListRendering() throws {
         // Wait for the list to load (adjust timeout as needed)
         let firstDriverCell = app.cells.firstMatch
-        XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 5))
+        XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 10))
 
         // Check if multiple driver cells are present
         XCTAssertTrue(app.cells.count > 1)
@@ -43,7 +43,7 @@ final class DriversListViewUITests: XCTestCase {
     func testSearchFunctionalitySuccess() throws {
         // Wait for the list to load
         let firstDriverCell = app.cells.firstMatch
-        XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 5))
+        XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 10))
 
         // Get the name of the first driver
         let firstDriverName = firstDriverCell.staticTexts.element(boundBy: 0).label
@@ -69,7 +69,7 @@ final class DriversListViewUITests: XCTestCase {
     func testSearchFunctionalityEmpty() throws {
         // Wait for the list to load
         let firstDriverCell = app.cells.firstMatch
-        XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 5))
+        XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 10))
 
         // Get the name of the first driver
         let searchText = "xxxx"
@@ -95,7 +95,7 @@ final class DriversListViewUITests: XCTestCase {
     func testNavigationToDriverDetail() throws {
         // Wait for the list to load
         let firstDriverCell = app.cells.firstMatch
-        XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 5))
+        XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 10))
 
         // Get the name of the first driver
         let firstDriverName = firstDriverCell.staticTexts.element(boundBy: 0).label

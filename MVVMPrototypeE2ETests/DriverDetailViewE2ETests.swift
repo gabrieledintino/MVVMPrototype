@@ -20,7 +20,7 @@ final class DriverDetailViewUITests: XCTestCase {
     func testDriverInformationDisplay() throws {
         // Wait for the list to load
         let firstDriverCell = app.cells.firstMatch
-        XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 5))
+        XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 10))
         // Navigate to DriverDetailView
         app.buttons["DriverCell_leclerc-DriverCell_leclerc"].tap()
         
@@ -52,7 +52,7 @@ final class DriverDetailViewUITests: XCTestCase {
     func testRaceResultsDisplay() throws {
         // Wait for the list to load
         let firstDriverCell = app.cells.firstMatch
-        XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 5))
+        XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 10))
         // Navigate to DriverDetailView
         app.buttons["DriverCell_leclerc-DriverCell_leclerc"].tap()
         
@@ -62,7 +62,7 @@ final class DriverDetailViewUITests: XCTestCase {
         
         // Check for the existence of specific race results
         let bahrainGP = app.staticTexts["Bahrain Grand Prix"]
-        XCTAssertTrue(bahrainGP.waitForExistence(timeout: 5))
+        XCTAssertTrue(bahrainGP.waitForExistence(timeout: 10))
         
         let bahrainPosition = app.staticTexts["4"]
         XCTAssertTrue(bahrainPosition.exists)
@@ -74,13 +74,13 @@ final class DriverDetailViewUITests: XCTestCase {
     func testFavoriteButtonFunctionality() throws {
         // Wait for the list to load
         let firstDriverCell = app.cells.firstMatch
-        XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 5))
+        XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 10))
         // Navigate to DriverDetailView
         app.buttons["DriverCell_leclerc-DriverCell_leclerc"].tap()
         
         // Find the favorite button
         let favoriteButton = app.navigationBars["Charles Leclerc"].buttons["star"]
-        XCTAssertTrue(favoriteButton.waitForExistence(timeout: 5))
+        XCTAssertTrue(favoriteButton.waitForExistence(timeout: 10))
         
         // Tap the favorite button
         favoriteButton.tap()

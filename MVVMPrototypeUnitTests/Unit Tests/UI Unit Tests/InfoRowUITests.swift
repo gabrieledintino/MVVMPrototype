@@ -37,8 +37,6 @@ final class InfoRowUITests: XCTestCase {
         // Test the value
         let valueText = try hStack.text(2)
         XCTAssertEqual(try valueText.string(), "Charles Leclerc")
-        //XCTAssertEqual(try valueText.attributes().font(), .subheadline)
-        //XCTAssertEqual(try valueText.attributes().foregroundColor(), .secondary)
     }
 
 }

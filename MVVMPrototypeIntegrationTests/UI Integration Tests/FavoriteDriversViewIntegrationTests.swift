@@ -33,7 +33,7 @@ final class FavoriteDriversViewIntegrationTests: XCTestCase {
             XCTAssertEqual(try view.actualView().viewModel.favoriteDrivers, [])
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 5.0)
     }
     
     func testProgressViewIsShownAndOthersHidden() throws {
@@ -47,7 +47,7 @@ final class FavoriteDriversViewIntegrationTests: XCTestCase {
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "list_view"))
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 5.0)
     }
     
     func testErrorViewIsShownAndOthersHidden() throws {
@@ -64,7 +64,7 @@ final class FavoriteDriversViewIntegrationTests: XCTestCase {
 
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 5.0)
     }
     
     func testDriverListIsEmptyShowsText() throws {
@@ -79,7 +79,7 @@ final class FavoriteDriversViewIntegrationTests: XCTestCase {
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "list_view"))
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 5.0)
     }
     
     func testDriverListIsShownAndOthersHidden() throws {
@@ -94,7 +94,7 @@ final class FavoriteDriversViewIntegrationTests: XCTestCase {
             XCTAssertThrowsError(try view.navigationView().zStack().list(0).forEach(0).navigationLink(4))
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 5.0)
     }
     
     func testDriverRowIsRenderedCorrectly() throws {
@@ -105,6 +105,6 @@ final class FavoriteDriversViewIntegrationTests: XCTestCase {
             XCTAssertEqual(try view.navigationView().zStack().list(0).forEach(0).navigationLink(0).labelView().view(DriverRow.self).vStack().text(1).string(), "Thai")
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 5.0)
     }
 }

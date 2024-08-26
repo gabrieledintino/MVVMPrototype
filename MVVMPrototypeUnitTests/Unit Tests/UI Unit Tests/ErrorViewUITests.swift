@@ -34,9 +34,5 @@ class ErrorViewUITests: XCTestCase {
         let messageText = try vStack.text(2)
         XCTAssertEqual(try messageText.string(), errorMessage)
         XCTAssertEqual(try messageText.multilineTextAlignment(), .center)
-        
-//        // Test padding
-//        XCTAssertEqual(try errorText.padding(), EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-//        XCTAssertEqual(try messageText.padding(), EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
     }
 }

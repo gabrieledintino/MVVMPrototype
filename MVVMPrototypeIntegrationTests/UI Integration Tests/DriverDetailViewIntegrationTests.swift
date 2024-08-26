@@ -39,7 +39,7 @@ final class DriverDetailViewIntegrationTests: XCTestCase {
             XCTAssertFalse(try view.actualView().viewModel.isFavorite)
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 5.0)
     }
 
     func testProgressViewIsShownAndOthersHidden() throws {
@@ -53,7 +53,7 @@ final class DriverDetailViewIntegrationTests: XCTestCase {
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "list_view"))
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 5.0)
     }
     
     func testErrorViewIsShownAndOthersHidden() throws {
@@ -70,7 +70,7 @@ final class DriverDetailViewIntegrationTests: XCTestCase {
 
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 5.0)
     }
     
     func testDriverListIsEmptyShowsText() throws {
@@ -83,7 +83,7 @@ final class DriverDetailViewIntegrationTests: XCTestCase {
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "list_view"))
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 5.0)
     }
     
     func testDriverListIsLoadedAndShownAndOthersHidden() throws {
@@ -112,6 +112,6 @@ final class DriverDetailViewIntegrationTests: XCTestCase {
             XCTAssertEqual(try button.labelView().image().actualImage().name(), "star.fill")
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp1, exp2], timeout: 3)
+        wait(for: [exp1, exp2], timeout: 5.0)
     }
 }

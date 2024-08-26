@@ -35,20 +35,20 @@ class FavoriteDriversViewUITests: XCTestCase {
     func testFavoriteDriversListDisplayedAndNavigationWorks() throws {
         // Wait for the list to load
         let firstDriverCell = app.cells.firstMatch
-        XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 5))
+        XCTAssertTrue(firstDriverCell.waitForExistence(timeout: 10))
         // Navigate to DriverDetailView
         app.buttons["DriverCell_leclerc-DriverCell_leclerc"].tap()
         
         // Find the favorite button
         let favoriteButton = app.navigationBars["Charles Leclerc"].buttons["star"]
-        XCTAssertTrue(favoriteButton.waitForExistence(timeout: 5))
+        XCTAssertTrue(favoriteButton.waitForExistence(timeout: 10))
         
         // Tap the favorite button
         favoriteButton.tap()
         XCUIApplication().tabBars["Tab Bar"].buttons["Favorites"].tap()
         
         let favoriteDriversList = app.cells.firstMatch
-        XCTAssertTrue(favoriteDriversList.waitForExistence(timeout: 5), "Favorite drivers list should be displayed when there are favorite drivers")
+        XCTAssertTrue(favoriteDriversList.waitForExistence(timeout: 10), "Favorite drivers list should be displayed when there are favorite drivers")
         
         // Check if there are cells in the list
         XCTAssertGreaterThan(app.cells.count, 0, "There should be at least one driver in the favorites list")

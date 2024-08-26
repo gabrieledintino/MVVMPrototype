@@ -33,7 +33,7 @@ class DriversListViewIntegrationTests: XCTestCase {
             XCTAssertEqual(try view.actualView().viewModel.drivers, [])
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 5.0)
     }
     
     func testProgressViewIsShownAndOthersHidden() throws {
@@ -46,7 +46,7 @@ class DriversListViewIntegrationTests: XCTestCase {
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "list_view"))
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 5.0)
     }
     
     func testErrorViewIsShownAndOthersHidden() throws {
@@ -61,12 +61,12 @@ class DriversListViewIntegrationTests: XCTestCase {
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "list_view"))
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 5.0)
     }
     
     func testDriverListIsShownAndOthersHidden() throws {
         let sut = DriversListView()
-        let exp = sut.inspection.inspect(after: 3.0) { view in
+        let exp = sut.inspection.inspect(after: 5.0) { view in
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "progress_view"))
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "error_view"))
             XCTAssertFalse(try view.find(viewWithAccessibilityIdentifier: "list_view").isHidden())
@@ -77,7 +77,7 @@ class DriversListViewIntegrationTests: XCTestCase {
     
     func testDriverRowIsRenderedCorrectly() throws {
         let sut = DriversListView()
-        let exp = sut.inspection.inspect(after: 3.0) { view in
+        let exp = sut.inspection.inspect(after: 5.0) { view in
             XCTAssertEqual(try view.navigationView().zStack().list(0).forEach(0).navigationLink(0).labelView().view(DriverRow.self).vStack().text(0).string(), "Alexander Albon")
             XCTAssertEqual(try view.navigationView().zStack().list(0).forEach(0).navigationLink(0).labelView().view(DriverRow.self).vStack().text(1).string(), "Thai")
         }

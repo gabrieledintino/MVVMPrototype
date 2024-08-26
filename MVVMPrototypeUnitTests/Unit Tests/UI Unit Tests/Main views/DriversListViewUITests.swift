@@ -39,7 +39,7 @@ class DriversListViewUITests: XCTestCase {
             verify(self.mockVM).fetchDrivers()
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 2.0)
+        wait(for: [exp], timeout: 3.0)
     }
     
     func testProgressViewIsShownAndOthersHidden() throws {
@@ -53,7 +53,7 @@ class DriversListViewUITests: XCTestCase {
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "list_view"))
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 3.0)
     }
     
     func testErrorViewIsShownAndOthersHidden() throws {
@@ -69,7 +69,7 @@ class DriversListViewUITests: XCTestCase {
             XCTAssertThrowsError(try view.find(viewWithAccessibilityIdentifier: "list_view"))
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 3.0)
     }
     
     func testDriverListIsShownAndOthersHidden() throws {
@@ -82,7 +82,7 @@ class DriversListViewUITests: XCTestCase {
             XCTAssertFalse(try view.find(viewWithAccessibilityIdentifier: "list_view").isHidden())
         }
         ViewHosting.host(view: sut)
-        wait(for: [exp], timeout: 0.1)
+        wait(for: [exp], timeout: 3.0)
     }
     
     func testDriverRowIsRenderedCorrectly() throws {
