@@ -8,10 +8,12 @@
 import XCTest
 
 final class DriversListViewUITests: XCTestCase {
-    let app = XCUIApplication()
-
+    var app: XCUIApplication!
+    
     override func setUpWithError() throws {
         continueAfterFailure = false
+        app = XCUIApplication()
+        app.launchArguments = ["--reset-userdefaults"]
         app.launch()
     }
 

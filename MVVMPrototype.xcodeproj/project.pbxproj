@@ -11,6 +11,7 @@
 		46063B702C457F070046FEB3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46063B6F2C457F070046FEB3 /* ContentView.swift */; };
 		46063B722C457F090046FEB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46063B712C457F090046FEB3 /* Assets.xcassets */; };
 		46063B752C457F090046FEB3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46063B742C457F090046FEB3 /* Preview Assets.xcassets */; };
+		46CAE7512C7D29C7000E257B /* MVVMPrototypeAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CAE7502C7D29C7000E257B /* MVVMPrototypeAppTests.swift */; };
 		46CD5DAF2C7BEA2E006D41F6 /* ci_post_clone.sh in Resources */ = {isa = PBXBuildFile; fileRef = 46CD5DAE2C7BEA2E006D41F6 /* ci_post_clone.sh */; };
 		5C26C8272C62CC730038D938 /* ErrorViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C26C8262C62CC730038D938 /* ErrorViewUITests.swift */; };
 		5C26C82E2C62D13B0038D938 /* DriverRowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C26C82D2C62D13B0038D938 /* DriverRowUITests.swift */; };
@@ -116,6 +117,7 @@
 		46063B742C457F090046FEB3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		46063B7A2C457F0A0046FEB3 /* MVVMPrototypeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVVMPrototypeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		46063B842C457F0A0046FEB3 /* MVVMPrototypeE2ETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVVMPrototypeE2ETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		46CAE7502C7D29C7000E257B /* MVVMPrototypeAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMPrototypeAppTests.swift; sourceTree = "<group>"; };
 		46CD5DAE2C7BEA2E006D41F6 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		5C1704A82C5D27470051782A /* MVVMPrototype.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MVVMPrototype.xctestplan; sourceTree = "<group>"; };
 		5C26C8262C62CC730038D938 /* ErrorViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewUITests.swift; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 				5CBB0FF02C6B90A3001CBCB6 /* Network Tests */,
 				5C26C82C2C62D1090038D938 /* UI Unit Tests */,
 				5C9625FA2C66DA5300C82441 /* ViewModel Tests */,
+				46CAE7502C7D29C7000E257B /* MVVMPrototypeAppTests.swift */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -661,6 +664,7 @@
 				5C4D38CB2C61147900E50092 /* DriversListViewUITests.swift in Sources */,
 				5C26C82E2C62D13B0038D938 /* DriverRowUITests.swift in Sources */,
 				5C51B1992C5A487F0049E2BB /* DriversListViewModelTests.swift in Sources */,
+				46CAE7512C7D29C7000E257B /* MVVMPrototypeAppTests.swift in Sources */,
 				5C9625FD2C678D6D00C82441 /* FavoriteDriversViewUITests.swift in Sources */,
 				5C9626152C6A384500C82441 /* DriverDetailViewUITests.swift in Sources */,
 				5C9625E42C66CB6200C82441 /* DriversListView.swift in Sources */,

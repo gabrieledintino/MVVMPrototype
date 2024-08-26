@@ -9,12 +9,12 @@ import XCTest
 @testable import MVVMPrototype
 
 class FavoriteDriversViewUITests: XCTestCase {
-    
     var app: XCUIApplication!
     
     override func setUpWithError() throws {
         continueAfterFailure = false
         app = XCUIApplication()
+        app.launchArguments = ["--reset-userdefaults"]
         app.launch()
     }
     
@@ -45,6 +45,7 @@ class FavoriteDriversViewUITests: XCTestCase {
         
         // Tap the favorite button
         favoriteButton.tap()
+        Thread.sleep(forTimeInterval: 0.5)
         XCUIApplication().tabBars["Tab Bar"].buttons["Favorites"].tap()
         
         let favoriteDriversList = app.cells.firstMatch

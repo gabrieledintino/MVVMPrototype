@@ -9,6 +9,11 @@
     }
   ],
   "defaultOptions" : {
+    "commandLineArgumentEntries" : [
+      {
+        "argument" : "--reset-userdefaults"
+      }
+    ],
     "language" : "it",
     "region" : "IT",
     "targetForVariableExpansion" : {
@@ -39,7 +44,7 @@
       "target" : {
         "containerPath" : "container:MVVMPrototype.xcodeproj",
         "identifier" : "46063B832C457F0A0046FEB3",
-        "name" : "MVVMPrototypeUITests"
+        "name" : "MVVMPrototypeE2ETests"
       }
     }
   ],
